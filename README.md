@@ -3,115 +3,100 @@
 
 ## Dasar Teori
 
-Sorting atau   pengurutan adalah   proses menyusun elemen–elemen dari masukan awal acak  menjadi  keluaran  akhir  tertata  dengan urutan tertentu[1]. Setiap algoritma pengurutan memiliki pendekatan dan metode yang berbeda-beda dalam menjalankan fungsinya. Secara garis besar, algoritma pengurutan dapat dikelompokkan menjadi dua kategori, yaitu algoritma pengurutan berbasis perbandingan (comparison based) dan tidak berbasis perbandingan (non-comparison based)[2]. Berdasarkan data terurutnya, algoritma sorting dibagi menjadi dua jenis, yaitu:
-- Ascending; pengurutan dari terkecil hingga terbesar. Contoh: a, b, c, d, e.
-- Descending; pengurutan dari nilai terbesar hingga terkecil. Contoh: e, d, c, b, a
+Algoritma pencarian adalah proses mendasar untuk menemukan elemen atau item tertentu dalam kumpulan data . Kumpulan data ini dapat mengambil berbagai bentuk, seperti array, daftar, pohon, atau representasi terstruktur lainnya. Tujuan utama pencarian adalah untuk menentukan apakah elemen yang diinginkan ada dalam data, dan jika ada, untuk mengidentifikasi lokasi tepatnya atau mengambilnya kembali. Ini memainkan peran penting dalam berbagai tugas komputasi dan aplikasi dunia nyata, termasuk pengambilan informasi, analisis data, proses pengambilan keputusan, dan banyak lagi[1].
 
 
-## 1. Insertion Sort
-Insertion sort adalah algoritma pengurutan sederhana yang bekerja dengan membagi array menjadi dua bagian, bagian yang diurutkan dan bagian yang tidak disortir. Dalam setiap iterasi, elemen pertama dari subarray yang tidak disortir diambil dan ditempatkan pada posisi yang benar dalam array yang diurutkan[3]. Apabila ditemukan data yang lebih kecil dari data sebelumnya, maka data tersebut disisipkan pada posisi yang sesuai.
-
-- Pseudocode Algoritma Insertion Sort
-    ```
-    for i = 1 to n-1
-        set j = i
-        set t = a[j]
-        repeat while j > 0 and a[j-1] > t
-            move a[j-1] to right
-        end repeat
-        set a[j] = t
-    end for
-    ```
-- Prosedur Insertion Sort dalam bahasa C++:
-
-    ```
-    void insertion_sort(int arr[], int length) {
-        int i, j ,tmp;
-
-        for (i = 1; i < length; i++) {
-                j = i;
-
-            while (j > 0 && arr[j - 1] > arr[j]) {
-                tmp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = tmp;
-                j--;
-            }//end of while loop
-        }//end of for loop
-    }
-    ```
-- Contoh
-
-    Diketahui array suatu integer terdiri dari 6 elemen sebagai berikut; {22, 10, 15, 3, 8, 2}. Contoh Program untuk mengurutkan ke-6 elemen tersebut adalah sebagai berikut:
-
-    ```C++
-    #include <iostream>
-    using namespace std;
-
-    void insertion_sort(int arr[], int length) {
-        int i, j ,tmp;
- 
-        for (i = 1; i < length; i++) {
-            j = i;
- 
-            while (j > 0 && arr[j - 1] > arr[j]) {
-                tmp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = tmp;
-                j--;
-            }//end of while loop
-        }//end of for loop
-    }
-    ```
+## 1. Sequential Search
+Pencarian Sequential dapat digunakan pada data dalam keadaan acak atau tidak terurut maupun yang sudah terurut. Pencarian Sequential atau sering disebut Pencarian Linear menggunakan prinsip data yang ada dibandingkan satu persatu secara berurutan dengan data yang dicari sampai elemen yang dicari ditemukan,atau seluruh elemen sudah diperiksa[2]. Sequential search dibagi menjadi 2, yaitu:
 
 
-## 2. Bubble Sort
-Algoritma Bubble Sort adalah algoritma yang terinspirasi dari gelembung sabun yang berada pada permukaan air. Karena berat jenis gelembung sabun lebih ringan daripada berat jenis air, maka gelembung sabun akan terapung ke atas permukaan. Apabila kita menginginkan larik terurut naik, maka elemen larik yang paling kecil diapungkan ke atas melalui proses pertukaran atau bisa disebutkan bahwa arah perbandingan dilakukan dari belakang[4]. Cara mengurutkannya adalah membandingkan elemen yang sekarang dengan elemen yang berikutnya. Jika elemen sekarang> elemen berikutnya, maka tukar.
+1.	Sequential Search pada Array yang elemen datanya Belum Terurut 
+    - Tanpa Sentinel
+    - Dengan sentinel
+2.	Sequential Search pada Array yang elemen datanya Sudah Terurut
+    - Tanpa Sentinel
+    - Dengan Sentinel
 
-Contoh Prosedur Bubble Sort dalam bahasa C++:
+Proses pencarian sequential **data belum terurut tanpa sentinel** :
 
-```C++
-void bubble_sort(int arr[], int length){
-    bool not_sorted = true;
-    int j=0,tmp;
+- pada dasarnya pencarian ini hanya melakukan pengulangan dari elemen ke-1 sampai dengan jumlah data. 
+- pada setiap pengulangan, dibandingkan data ke-i dengan yang dicari,
+- apabila sama berarti data telah ditemukan,
+- sebaliknya apabila sampai akhir pengulangan tidak ada yang sama, berarti data tidak ada.
 
-    while (not_sorted){
-        not_sorted = false;
-        j++;
-        for (int i = 0; i < length - j; i++){
-            if (arr[i] > arr[i + 1]) {
-                tmp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = tmp;
-                not_sorted = true;
-            }//end of if
-        }//end of for loop
-    }//end of while loop
-}//end of bubble_sort
-```
+Proses pencarian sequential **data belum terurut dengan sentinel** :
+- pada dasarnya pencarian ini sama dengan proses pencarian sequential data belum terurut tanpa sentinel yaitu melakukan pengulangan dari elemen ke-1 sampai dengan jumlah data. 
+- pada setiap pengulangan, dibandingkan data ke-i dengan yang dicari,
+- apabila sama berarti data telah ditemukan,
+- perbedaannya dengan yang tanpa sentinel adalah ketika data ditemukan tapi data tersebut adalah sentinel berarti data tidak ada.
 
-## 3. Selection Sort
-Selection Sort adalah algoritma pengurutan sederhana yang digunakan untuk mengurutkan elemen-elemen dalam sebuah array. Algoritma ini bekerja dengan mencari elemen terkecil atau terbesar dalam array dan menukar posisinya dengan elemen pertama. Kemudian, mencari elemen terkecil atau terbesar berikutnya dalam sisa array yang belum terurut dan menukar posisinya dengan elemen kedua. Proses ini diulangi secara berulang hingga seluruh array terurut [5]. Cara mengurutkannya adalah dengan membandingkan elemen sekarang dengan elemen yang berikutnya sampai terakhir. Jika ditemukan elemen paling kecil, kemudian ditukar dengan elemen sekarang
+Proses pencarian sequential **data sudah terurut** :
 
-Contoh prosedur Selection Sort:
-```C++
-void selectSort(int arr[], int n) {
-    int pos_min,temp;
-        for (int i=0; i < n-1; i++) {
-            pos_min = i;
-                for (int j=i+1; j < n; j++) {
-                if (arr[j] < arr[pos_min])
-                    pos_min=j;
-                }
+- Dimulai dari elemen pertama pada Array, dilakukan pembandingan dengan elemen yang dicari. Jika elemen dalam Array masih lebih kecil dari elemen yang dicari maka pencarian diteruskan. Jika sudah lebih besar, pencarian dihentikan, dan bisa dipastikan bahwa elemen yang dicari memang tidak ada.
+- Jika digunakan cara pencarian dengan sentinel (elemen yang dicari disisipkan di index setelah data terakhir), dan elemen yang dicari lebih besar dari data terakhir yang ada di Array sehingga data yang dicari sama dengan data sentinel maka dapat disimpulkan bahwa data tidak ditemukan.
 
-            if (pos_min != i) {
-                temp = arr[i];
-                arr[i] = arr[pos_min];
-                arr[pos_min] = temp;
-            }
-        }
-}
-```
+**Contoh**
+
+Contoh dari Sequential Search, yaitu:
+
+Array
+
+Int A[8] = {9,1,5,2,7,6,11,3}
+![Screenshot 2024-04-08 120421](https://github.com/rennanvra/Praktikum-4/assets/162097323/65123d66-72f2-49f9-82bd-902b383453a3)
+
+Gambar 1. Ilustrasi Sequential Search
+
+Misalkan, dari data di atas angka yang akan dicari adalah angka 7 dalam array A, maka proses yang akan terjadi yaitu:
+- Pencarian dimulai pada index ke-0 yaitu angka 9, kemudian
+dicocokkan dengan angka yang akan dicari, jika tidak sama maka
+pencarian akan dilanjutkan ke index selanjutnya.
+- Pada index ke-1, yaitu angka 1, juga bukan angka yang dicari, maka
+pencarian akan dilanjutkan pada index selanjutnya.
+- Pada index ke-2 dan index ke-3 yaitu angka 5 dan 2, juga bukan
+angka yang dicari, sehingga pencarian dilanjutkan pada index
+selanjutnya.
+- Pada index ke-4 yaitu angka 7 dan ternyata angka 7 merupakan
+angka yang dicari, sehingga pencarian akan dihentikan dan proses
+selesai.
+
+
+## 2. Binary Search
+Dalam Pencarian Binary Search, data yang ada harus diurutkan terlebih dahulu berdasarkan suatu urutan tertentu yang dijadikan kunci pencarian. Binary Search dalah teknik pencarian data dalam dengan cara membagi data menjadi dua bagian setiap kali terjadi proses pencarian[3]. Algoritma ini biasanya banya diguankan untuk mencari suatu key pada array dengan jumlah elemen yang banyak, dimana kompleksitas dari algoritma ini adalah O(log n). Dalam penerapannya algoritma ini sering digabungkan dengan algoritma sorting karena data yang akan digunakan harus sudah terurut terlebih dahulu[4].
+
+Prinsip atau cara kerja pencarian biner adalah:
+1.	mula-mula diambil posisi awal=1 dan posisi akhir=n
+2.	kemudian kita cari posisi data tengah dengan rumus posisi tengah = (posisi awal + posisi akhir) div 2
+3.	kemudian data yang dicari dibandingkan dengan data tengah
+
+    a.	jika sama, data ditemukan, proses selesai. 
+
+    b. jika lebih kecil, proses dilakukan kembali tetapi posisi akhir dianggap sama dengan posisi tengah - 1.
+    c. jika lebih besar, proses dilakukan kembali tetapi posisi awal dianggap sama dengan posisi tengah + 1.
+4.	ulangi langkah 2 sampai data ditemukan, atau tidak ditemukan.
+5.	Pencarian biner ini akan berakhir jika data ditemukan atau posisi awal lebih besar dari pada posisi akhir. Jika posisi awal sudah lebih besar daripada posisi akhir berarti data tidak ditemukan.[2].
+
+**Contoh**
+![Screenshot 2024-04-08 121319](https://github.com/rennanvra/Praktikum-4/assets/162097323/5474ad61-8dfd-42b6-b530-626a37de91a8)
+
+Gambar 2. Ilustrasi Binary Search
+
+- Terdapat sebuah array yang menampung 7 elemen seperti ilustrasi
+di atas. Nilai yang akan dicari pada array tersebut adalah 13
+- Jadi karena konsep dari binary search ini adalah membagi array
+menjadi dua bagian, maka pertama tama kita cari nilai tengahnya
+dulu, total elemen dibagi 2 yaitu 7/2 = 4.5 dan kita bulatkan jadi 4.
+- Maka elemen ke empat pada array adalah nilai tengahnya, yaitu
+angka 9 pada indeks ke 3
+- Kemudian kita cek apakah 13 > 9 atau 13 < 9?
+- 13 lebih besar dari 9, maka kemungkinan besar angka 13 berada
+setelah 9 atau di sebelah kanan. Selanjutnya kita cari ke kanan dan
+kita dapat mengabaikan elemen yang ada di kiri
+- Setelah itu kita cari lagi nilai tengahnya, didapatlah angka 14 sebagai
+nilai tengah. Lalu, kita bandingkan apakah 13 > 14 atau 13 < 14?
+- Ternyata 13 lebih kecil dari 14, maka selanjutnya kita cari ke kiri
+- Karna tersisa 1 elemen saja, maka elemen tersebut adalah nilai
+tengahnya. Setelah dicek ternyata elemen pada indeks ke-4 adalah
+elemen yang dicari, maka telah selesai proses pencariannya.
 
 ## Guided 
 
@@ -151,176 +136,197 @@ int main(){
 
 #### Output
 
-![Screenshot 2024-04-01 100301](https://github.com/rennanvra/Praktikum-2/assets/162097323/89523725-97fa-4d0d-a186-1cd5988d56f9)
+![Screenshot 2024-04-08 103957](https://github.com/rennanvra/Praktikum-4/assets/162097323/0e307303-6bc5-4896-8170-7c5e38ab8e6c)
 
 #### Interpretasi:
-Program di atas adalah contoh dari algoritma Bubble Sort. Program ini mengurutkan array 'a' yang berisi data numerik yang bertipe double secara ascending (terkecil ke terbesar). Kemudian akan mencetak array sebelum diurutkan dan sesudah diurutkan.
+Program di atas adalah contoh dari implementasi algoritma Sequential Seach. Dimana program akan membuat sebuah array dengan 10 elemen. Program tersebut akan mencari suatu elemen dengan menggunakan loop **for**. Kemudian akan mencetak hasil apakah elemen yang dicari ditemukan atau tidak.
 
-#### Analisis Kompleksitas Waktu
-- Best Case : **O(n)**, karena pada best case (array sudah terurut), hanya dilakukan satu kali perulangan untuk mengetahui apakah ada pertukaran atau tidak. Namun, meskipun data sudah terurut, Bubble Sort tetap harus melakukan perulangan penuh sekali.
-- Worst and Average Case: **O(n^2),** n adalah jumlah elemen dalam array. Karena algoritma Bubble sort perlu melakukan perulangan bersarang atau nested loop, yaitu perulangan untuk setiap elemen array dan perulangan dalam setiap iterasi untuk mencari elemen yang harus ditukar.
-#### Analisis Kompleksitas Ruang
-- **O(1)**, konstan. Karena Bubble sort tidak memerlukan tambahan memori karena adanya penambahan ukuran input (n), hanya menggunakan ruang konstan tambahan yang tidak tergantung pada ukuran input.
-
-
-### 2. Mengurutkan karakter secara descending (dari terbesar hingga terkecil) menggunakan Algoritma Insertion Sort
-
+### 2. Buatlah sebuah project untuk melakukan pencarian data denganmenggunakan Binary Search
 
 ```C++
 #include <iostream>
+#include <conio.h>
+#include <iomanip>
+
 using namespace std;
 
-// Mengurutkan karakter secara descending menggunakan Algoritma Insertion sort
-void insertion_sort(char arr[], int length) {
-    int i, j;
-    char tmp;
+int cari;
 
-    for (i = 1; i < length; i++) {
-        j = i;
-
-        while (j > 0 && arr[j - 1] < arr[j]) {
-            tmp = arr[j];
-            arr[j] = arr[j - 1];
-            arr[j - 1] = tmp;
-            j--;
-        }//end of while loop
-    }//end of for loop
+void selection_sort(int data[], int length) {
+    int temp, min, i, j;
+    for(i = 0; i < length; i++) {
+        min = i;
+        for(j = i + 1; j < length; j++) {
+            if(data[j] < data[min]) {
+                min=j;
+            }
+        }
+        temp = data[i];
+        data[i] = data[min];
+        data[min] = temp;
+    }
 }
 
-
-void print_array(char a[], int length) {
-    for(int i=0; i<length; i++) {
-        cout << a[i] << "\t";
+void binarysearch(int data[], int length) {
+    int awal, akhir, tengah, b_flag = 0;
+    awal = 0;
+    akhir = length - 1;
+    while (b_flag == 0 && awal <= akhir) {
+        tengah = (awal + akhir) / 2;
+        if(data[tengah] == cari) {
+            b_flag = 1;
+            break;
+        } else if(data[tengah] < cari)
+            awal = tengah + 1;
+        else
+            akhir = tengah - 1;
     }
-    cout << endl;
+    if(b_flag == 1)
+        cout<<"\n Data ditemukan pada index ke- " << tengah << endl;
+    else
+        cout<<"\n Data tidak ditemukan\n";
 }
 
 int main() {
-    
-    int length = 6;
-    char a[length] = {'c', 'f', 'a', 'z', 'd', 'p'};
- 
-    cout << "Urutan karakter sebelum sorting: " << endl;
-    print_array(a, length);
- 
-    insertion_sort(a, length);
-    
-    cout << "\nUrutan karakter setelah sorting: " << endl;
-    print_array(a, length);
+    int data[7] = {1, 8, 2, 5, 4, 9, 7};
+    int length = sizeof(data) / sizeof(data[0]);
+
+    cout << "\t BINARY SEARCH " << endl;
+    cout << "\n Data : ";
+    // Tampilkan data awal
+    for(int x = 0; x<7; x++)
+        cout << setw(3) << data[x];
+    cout << endl;
+
+    cout << "\n Masukkan data yang ingin Anda cari : ";
+    cin >> cari;
+
+    cout << "\n Data diurutkan : ";
+    // Urutkan data dengan selection sort
+    selection_sort(data, length);
+
+    // Tampilkan data setelah diurutkan
+    for(int x = 0; x < 7; x++)
+        cout << setw(3) << data[x];
+    cout << endl;
+
+    binarysearch(data, length);
+    _getche();
+    return EXIT_SUCCESS;
 }
 ```
 
 #### Output:
 
-![Screenshot 2024-04-01 105956](https://github.com/rennanvra/Praktikum-2/assets/162097323/deade445-632e-47f0-98aa-63d228c8e4ef)
+![Screenshot 2024-04-08 104025](https://github.com/rennanvra/Praktikum-4/assets/162097323/5b0ad85c-678a-45ab-af4b-9bedd11b4efa)
 
 #### Interpretasi:
-Program di atas menggunakan algoritma sorting Insertion Sort untuk mengurutkan sebuah data dalam array secara descending (nilai tertinggi ke nilai terendah). Program di atas secara berurutan menempatkan setiap elemen ke posisi yang tepat, dan memastikan bahwa array secara keseluruhan terurut. Kemudian program akan mencetak data yang belum teurut dan yang sudah terurut.
-
-#### Analisis Kompleksitas Waktu
-- Best Case : **O(n)**, karena pada best case (array sudah terurut), algoritma hanya perlu melakukan satu kali perulangan untuk setiap elemen array.
-- Worst and Average Case : **O(n^2),** n adalah jumlah elemen dalam array. Karena walaupun insertion sort dan bubble sort memiliki sedikit perubahan, tetapi tetap saja pada insertion sort harus memindahkan setiap elemen ke posisi yang tepat dalam iterasi terbaik.
-
-#### Analisis Kompleksitas Ruang
-- **O(1)**, konstan. Karena Insertion sort tidak memerlukan tambahan memori karena adanya penambahan ukuran input (n), hanya menggunakan ruang konstan tambahan yang tidak tergantung pada ukuran input.
-
+Program di atas adalah contoh dari implementasi Binary Search. Program di atas akan mencari sebuah angka dalam array yang telah diurutkan sebelumnya dengan menggunakan Selection Sort. Kemudian program akan mencetak hasil apakah angka yang dicari ditemukan atau tidak. Apabila angka ditemukan, maka program akan mencetak indeksnya.
 
 ## Unguided 
 
-### 1. Kelas S1 IF 2016 G memiliki 5 mahasiswa. Pada akhir semester mereka menerima lembar Indeks Prestasi Semester (IPS), masing-masing mahasiswa tersebut memiliki IPS sebagai berikut: {3.8, 2.9, 3.3, 4.0, 2.4}. Buatlah program untuk mengurutkan IPS mahasiswa tersebut dari yang terbesar hingga terkecil dengan menggunakan algoritma Selection Sort!
-
+### 1. Buatlah sebuah program untuk mencari sebuah huruf pada sebuahkalimat yang sudah di input dengan menggunakan Binary Search!
 
 ```C++
-#include <iostream> 
+#include <iostream>
+#include <string>
+#include <algorithm>
 using namespace std;
 
-void selection_sort(float arr[], int n) {
-    for (int i = 0; i < n-1; i++) { 
-        int min = i;
-        for (int j = i+1; j < n; j++) {
-            if (arr[j] < arr[min]) { 
-                min = j;
-        }
-    }
-    if (min != i) {
-        float temp = arr[i]; 
-        arr[i] = arr[min]; 
-        arr[min] = temp;
-        }
-    }
-    cout << endl; 
+void selection_sort(string &kalimat) {
+    sort(kalimat.begin(), kalimat.end());
 }
 
-void print_array(float arr[], int n) { 
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " "; 
+string toLowerCase(string kalimat) {
+    transform(kalimat.begin(), kalimat.end(), kalimat.begin(), ::tolower);
+    return kalimat;
+}
+
+bool binarySearch(string kalimat, char target) {
+    int awal = 0;
+    int akhir = kalimat.length() - 1;
+
+    while (awal <= akhir) {
+        int tengah = awal + (akhir - awal) / 2;
+
+        if (kalimat[tengah] == target) {
+            return true;
+        }
+
+        if (kalimat[tengah] < target) {
+            awal = tengah + 1;
+        } else {
+            akhir = tengah - 1;
+        }
     }
-    cout << endl; 
+
+    return false;
 }
 
 int main() {
-    int length = 5;
-    float a[length] = {3.8, 2.9, 3.3, 4.0, 2.4};
-    cout << "IPS mahasiswa sebelum sorting: " << endl; 
-    print_array(a, length);
-    selection_sort(a, length);
-    cout << "IPS maha siswa setelah sorting: " << endl; 
-    print_array(a, length);
+    string kalimat;
+    char target;
 
-return 0; 
+    cout << "Masukkan kalimat: ";
+    getline(cin, kalimat);
+
+    cout << "Masukkan huruf yang ingin dicari: ";
+    cin >> target;
+
+    cout << "\nKalimat setelah diurutkan : ";
+    selection_sort(kalimat);
+    cout << kalimat << endl;
+
+    kalimat = toLowerCase(kalimat);
+    target = tolower(target);
+
+    bool ditemukan = binarySearch(kalimat, target);
+
+    if (ditemukan) {
+        cout << "Huruf " << target << " ditemukan dalam kalimat." << endl;
+    } else {
+        cout << "Huruf " << target << " tidak ditemukan dalam kalimat." << endl;
+    }
+
+    return 0;
 }
-
 ```
 
 #### Output:
-![Screenshot 2024-04-01 115357](https://github.com/rennanvra/Praktikum-2/assets/162097323/fefd04bc-40f1-4aa6-9a76-647d5b4a4ee6)
+![Screenshot 2024-04-08 111137](https://github.com/rennanvra/Praktikum-4/assets/162097323/d7b175d9-8499-431d-a95c-f0b03a070fca)
 
 
 #### Interpretasi:
-Program di atas menggunakan algoritma Selection Sort untuk mengurutkan array **a** yang berisi nilai-nilai Indeks Prestasi Semester (IPS) mahasiswa. Kemudian setelah diurutkan, program akan mencetak nilai-nilai IPS sebelum dan sesudah terurut.
+Program di atas menggunakan algoritma Binary Search untuk mencari sebuah huruf dalam kalimat yang diinputkan pengguna. Pertama-tama program akan mengurutkan huruf-huruf menggunakan algoritma Selection Sort, lalu diubah menjadi huruf kecil. Setelah pengguna menginputkan huruf yang akan dicari, program akan menjalankan binary seacrh. Kemudian akan mencetak hasil apakah huruf yang dicari ditemukan dalam kalimat atau tidak.
 
-#### Analisis Kompleksitas Waktu
-- Best, Worst and Average Case : **O(n^2),** n adalah jumlah elemen dalam array. Kompleksitasnya tetap O(n^2), meskipun tidak ada perbedaan signifikan dalam jumlah perbandingan antara best, worst, average case karena algoritma di atas melakukan dua perulangan nested loop, di mana perulangan luar dijalankan sebanyak n kali (untuk setiap elemen dalam array), dan perulangan dalam dijalankan sebanyak (n-1) kali pada setiap iterasi luar. 
-
-#### Analisis Kompleksitas Ruang
-- **O(1)**, konstan. Karena algoritma di atas tidak memerlukan tambahan memori karena adanya penambahan ukuran input (n), hanya menggunakan ruang konstan tambahan yang tidak tergantung pada ukuran input.
-
-
-### 2. Pak RT memiliki 10 warga dengan nama: siti, situ, sana, ana, ani, caca, cici, dida, dodo, dan dadi. Supaya mudah dalam melakukan pencarian, Pak RT akan mengurutkan namanama tersebut sesuai dengan alfabet. Buatlah program untuk membantu Pak RT dengan menggunakan algoritma Bubble Sort! 
+### 2. Buatlah sebuah program yang dapat menghitung banyaknya hurufvocal dalam sebuah kalimat!
 
 ```C++
-#include<iostream>
+#include <iostream>
+#include <string>
+#include <algorithm>
+
 using namespace std;
 
-void bubble_sort(string arr[], int n) {
-    for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                string temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
-    cout << endl;
-}
-
-void print_array(string arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+string toLowerCase(string kalimat) {
+    transform(kalimat.begin(), kalimat.end(), kalimat.begin(), ::tolower);
+    return kalimat;
 }
 
 int main() {
-    const int jumlah = 10;
-    string nama[jumlah] = {"siti,", "situ,", "sana,", "ana,", "ani,",
-"caca,", "cici,", "dida,", "dodo,", "dadi,"};
-    cout << "Nama-nama warga sebelum diurutkan: " << endl;
-    print_array(nama, jumlah);
-    bubble_sort(nama, jumlah);
-    cout << "Nama-nama warga setelah diurutkan: " << endl;
-    print_array(nama, jumlah);
+    string kalimat;
+    int jumlahVocal = 0;
+
+    cout << "Masukkan kalimat: ";
+    getline(cin, kalimat);
+
+    for (int i = 0; i < kalimat.length(); i++) {
+        if (kalimat[i] == 'a' || kalimat[i] == 'e' || kalimat[i] == 'i' || kalimat[i] == 'o' || kalimat[i] == 'u') {
+            jumlahVocal++;
+        }
+    }
+
+    cout << "Banyaknya huruf vocal dalam kalimat tersebut adalah: " << jumlahVocal << endl;
 
     return 0;
 }
@@ -328,121 +334,59 @@ int main() {
 
 #### Output:
 
-![Screenshot 2024-04-01 115603](https://github.com/rennanvra/Praktikum-2/assets/162097323/cd4e6d6d-9205-4cdc-a2c4-2415ef46b66b)
+![Screenshot 2024-04-08 111332](https://github.com/rennanvra/Praktikum-4/assets/162097323/09c12f07-b004-423c-a9e6-840f82790391)
 
 
 #### Interpretasi:
-Program di atas menggunakan algoritma Bubble Sort untuk mengurutkan array nama yang berisi string berupa nama-nama warga. Setelah diurutkan, program mencetak nama-nama warga tersebut sebelum dan sesudah proses pengurutan.
+Program di atas adalah suatu program untuk menghitung total huruf vokal dalam suatu kalimat yang diinputkan oleh pengguna. Proses tersebut menggunakan loop **for** untuk memeriksa huruf vokal (a,i,u,e,o) pada setiap karakter, apabila ditemukan maka akan bertambah jumlah huruf vokalnya. Kemudia program akan mencetak jumlah huruf vokal yang terdapat pada kalimat yang diinputkan oleh pengguna tersebut. 
 
-#### Analisis Kompleksitas Waktu
-- Best Case : **O(n)**, karena pada best case (array sudah terurut), hanya dilakukan satu kali perulangan untuk mengetahui apakah ada pertukaran atau tidak. Namun, meskipun data sudah terurut, Bubble Sort tetap harus melakukan perulangan penuh sekali.
-- Worst and Average Case: **O(n^2),** n adalah jumlah elemen dalam array. Karena algoritma Bubble sort perlu melakukan perulangan bersarang atau nested loop pada kasus terburuk, yaitu perulangan untuk setiap elemen array dan perulangan dalam setiap iterasi untuk mencari elemen yang harus ditukar.
-#### Analisis Kompleksitas Ruang
-- **O(1)**, konstan. Karena Bubble sort tidak memerlukan tambahan memori karena adanya penambahan ukuran input (n), hanya menggunakan ruang konstan tambahan yang tidak tergantung pada ukuran input.
-
-
-### 3. [Buatlah program menu untuk mencari nilai Maksimum, Minimum dan Nilai rata – rata dari suatu array dengan input yang dimasukan oleh user!]
+### 3.  Diketahui data = 9, 4, 1, 4, 7, 10, 5, 4, 12, 4. Hitunglah berapa banyakangka 4 dengan menggunakan algoritma Sequential Search!
 
 
 ```C++
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-void bubble_sort_ascending(char arr[], int n){
-    for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-i-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                char temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
-}
+int hitungAngka(int data[], int size, int angka) {
+    int count = 0;
 
-void bubble_sort_descending(char arr[],int n){
-    for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-i-1; j++) {
-            if (arr[j] < arr[j+1]) {
-                char temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
+    for (int i = 0; i < size; i++) {
+        if (data[i] == angka) {
+            count++;
         }
     }
+
+    return count;
 }
 
 int main() {
-    int n;
-    cout << "input (n): "; cin >> n;
-    char karakter[n];
-    for (int i = 0; i < n; i++) {
-        cout << "Karakter ke-" << i+1 << ":";
-        cin >> karakter[i];
-    }
-    cout << "\nUrutan karakter sebelum sorting:"<< endl;
-    for (int i = 0; i < n; i++) {
-        cout << karakter[i] << " ";
-    }
-    cout << endl;
-    bubble_sort_ascending(karakter, n);
-    cout << "\nUrutan karakter setelah ascending sort: " << endl;
-    for (int i = 0; i < n; i++) {
-        cout << karakter[i] << " ";
-    }
-    cout << endl;
-    bubble_sort_descending(karakter, n);
-    cout << "\nUrutan karakter setelah descending sort: " << endl;
-    for (int i = 0; i < n; i++) {
-        cout << karakter[i] << " ";
-    }
-    cout << endl;
+    int data[] = {9, 4, 1, 4, 7, 10, 5, 4, 12, 4};
+    int size = sizeof(data) / sizeof(data[0]);
+    int angka = 4;
 
-return 0;
+    // Menghitung berapa banyak angka 4 dalam data
+    int jumlahAngka = hitungAngka(data, size, angka);
+
+    cout << "Jumlah angka " << angka << " dalam data tersebut adalah: " << jumlahAngka << endl;
+
+    return 0;
 }
 ```
 #### Output
 
-![Screenshot 2024-04-01 120430](https://github.com/rennanvra/Praktikum-2/assets/162097323/0f8b8261-0556-46e9-abd3-0c8ed1f44caf)
+![Screenshot 2024-04-08 111347](https://github.com/rennanvra/Praktikum-4/assets/162097323/03b60b13-8818-4fd1-aa13-6ae2ecfae408)
 
 #### Interpretasi:
-Program di atas meminta pengguna untuk memasukkan jumlah karakter dan karakter-karakternya. Menggunakan algoritma Bubble Sort, program mengurutkan array karakter tersebut baik secara ascending maupun descending. Setelah diurutkan, program akan mencetak karakter setelah dan sebelum diurutkan baik secara ascending atau descending.
-
-#### Analisis Kompleksitas Waktu
-- Best Case : **O(n^2)**, pada kasus di atas karena walaupun pada best case (array sudah terurut), algoritma akan menjalankan loop luar sebanyak n-1 kali, meskipun tidak ada pertukaran yang terjadi di dalam loop dalam. 
-- Worst and Average Case: **O(n^2),** n adalah jumlah elemen dalam array. Hal ini disebabkan oleh adanya dua loop bersarang. Loop luar akan berjalan sebanyak n-1 kali, di mana n adalah jumlah elemen dalam array. Sedangkan loop dalam akan berjalan juga sebanyak n-1 kali pada iterasi pertama, kemudian n-2 kali pada iterasi kedua, dan seterusnya hingga hanya satu kali pada iterasi terakhir. 
-#### Analisis Kompleksitas Ruang
-- **O(1)**, konstan. Karena Bubble sort tidak memerlukan tambahan memori karena adanya penambahan ukuran input (n), hanya menggunakan ruang konstan tambahan yang tidak tergantung pada ukuran input.
+Program di atas adalah program untuk menghitung berapa banyak angka yang ingin dihitung pada suatu array, dalam kasus ini adalah angka 4. Program ini berguna untuk menghitung frekuensi kemunculan angka terntentu dalam sebuah data atau array. Apabila sudah ditemukan, program akan mencetak total angka yang ingin dicari dalam suatu array tersebut. 
 
 ## Kesimpulan
-
-Tiga algoritma pengurutan yang umum digunakan dalam pemrograman komputer adalah pengurutan insert, pengurutan bubble, dan pengurutan pilihan. Proses pengolahan membagi array menjadi dua bagian, yaitu bagian yang sudah diurutkan dan bagian yang belum diurutkan. Elemen dari bagian yang belum diurutkan akan diambil dan ditempatkan pada posisi yang sesuai dalam bagian yang sudah diurutkan pada setiap iterasi pengolahan penyisipan. 
-
-secara singkat kompleksitas waktu dan ruang dari ketiga algoritma sorting adalah:
-
-- Bubble Sort: 
-
-    Kompleksitas Waktu : Best case **O(n)**, Worst and Average Case **O(n^2)**
-    
-    Kompleksitas Ruang **O(1)**.
-- Insertion Sort: 
-
-    Kompleksitas Waktu : Best Case **O(n)**, Worst and Average Case** O(n^2)** 
-    
-    Kompleksitas Ruang **O(1)**.
-- Selection Sort: 
-
-    Kompleksitas Waktu : Best, Worst, and Average Case **O(n^2)**
-    
-    Kompleksitas Ruang **O(1)**.
+Algoritma pencarian adalah proses mendasar untuk menemukan elemen atau item tertentu dalam kumpulan data . Kumpulan data ini dapat mengambil berbagai bentuk, seperti array, daftar, pohon, atau representasi terstruktur lainnya. Ada dua jenis utama algoritma pencarian: Pencarian Sequential dan Pencarian Binary. Pencarian Sequential dapat digunakan pada data dalam keadaan acak atau tidak terurut maupun yang sudah terurut. Terdapat dua jenis pencarian Sequential: untuk array yang belum terurut dan array yang sudah terurut. Pada Pencarian Binary data yang telah diurutkan terlebih dahulu. Algoritma ini membagi data menjadi dua bagian setiap kali dilakukan pencarian, mengurangi jumlah data yang perlu diperiksa secara signifikan.
 
 ## Referensi
-[1] Saptadi, A. H., & Sari, D. W. (2012). Analisis algoritma insertion sort, merge sort dan implementasinya dalam bahasa pemrograman c++. Jurnal Infotel, 4(2), 10-17.
+[1] GeeksforGeeks. (n.d.). Searching Algorithms. Diakses pada 8 April 2024, dari https://www.geeksforgeeks.org/searching-algorithms/
 
-[2] Kusmira, M., Mulyani, Y. S., & Karsono, K. (2015). KOMPARASI ALGORITMA QUICKSORT DAN BUCKET SORT PENGURUTAN DATA INTEGER MENGGUNAKAN BAHASA C++. Konferensi Nasional Ilmu Sosial dan Teknologi, 1(1).
+[2] Repositori=y Unikom. Materi Alpro2. Diakses pada 8 April 2024, dari https://repository.unikom.ac.id/31358/1/Materi%20Alpro2.doc
 
-[3] GeeksforGeeks. "C++ Program For Insertion Sort." [Online].   Available: https://www.geeksforgeeks.org/cpp-program-for-insertion-sort/. 
+[3] FIRLIANA, R., & Kasih, P. (2018). Algoritma dan Pemrograman C++. 
 
-[4] Arifin, R. W., & Setiyadi, D. (2020). Algoritma Metode Pengurutan Bubble Sort dan Quick Sort Dalam Bahasa Pemrograman C++. INFORMATION SYSTEM FOR EDUCATORS AND PROFESSIONALS: Journal of Information System, 4(2), 178-â.
-
-[5] Joandanu, L. "Selection Sort di C++." Medium. Available: https://medium.com/@danuljoan/selection-sort-di-c-7de265eb23a.
+[4] Muhammad Wafa. Binary Search. Diakses pada 8 April 2024, dari  https://mikirinkode.com/binary-search/

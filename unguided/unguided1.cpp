@@ -1,7 +1,13 @@
+
+
 #include <iostream>
 #include <string>
 #include <algorithm>
 using namespace std;
+
+void selection_sort(string &kalimat) {
+    sort(kalimat.begin(), kalimat.end());
+}
 
 string toLowerCase(string kalimat) {
     transform(kalimat.begin(), kalimat.end(), kalimat.begin(), ::tolower);
@@ -38,6 +44,10 @@ int main() {
 
     cout << "Masukkan huruf yang ingin dicari: ";
     cin >> target;
+
+    cout << "\nKalimat setelah diurutkan : ";
+    selection_sort(kalimat);
+    cout << kalimat << endl;
 
     kalimat = toLowerCase(kalimat);
     target = tolower(target);
