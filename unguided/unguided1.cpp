@@ -1,27 +1,28 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-
 using namespace std;
 
-string toLowerCase(string str) {
-    transform(str.begin(), str.end(), str.begin(), ::tolower);
-    return str;
+string toLowerCase(string kalimat) {
+    transform(kalimat.begin(), kalimat.end(), kalimat.begin(), ::tolower);
+    return kalimat;
 }
 
-bool binarySearch(const string &str, char target) {
-    int low = 0;
-    int high = str.size() - 1;
+bool binarySearch(string kalimat, char target) {
+    int awal = 0;
+    int akhir = kalimat.length() - 1;
 
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
+    while (awal <= akhir) {
+        int tengah = awal + (akhir - awal) / 2;
 
-        if (str[mid] == target) {
+        if (kalimat[tengah] == target) {
             return true;
-        } else if (str[mid] < target) {
-            low = mid + 1;
+        }
+
+        if (kalimat[tengah] < target) {
+            awal = tengah + 1;
         } else {
-            high = mid - 1;
+            akhir = tengah - 1;
         }
     }
 
@@ -30,20 +31,23 @@ bool binarySearch(const string &str, char target) {
 
 int main() {
     string kalimat;
-    char huruf;
+    char target;
 
     cout << "Masukkan kalimat: ";
     getline(cin, kalimat);
 
     cout << "Masukkan huruf yang ingin dicari: ";
-    cin >> huruf;
+    cin >> target;
 
-    bool ditemukan = binarySearch(kalimat, tolower(huruf));
+    kalimat = toLowerCase(kalimat);
+    target = tolower(target);
+
+    bool ditemukan = binarySearch(kalimat, target);
 
     if (ditemukan) {
-        cout << "Huruf '" << huruf << "' ditemukan dalam kalimat." << endl;
+        cout << "Huruf " << target << " ditemukan dalam kalimat." << endl;
     } else {
-        cout << "Huruf '" << huruf << "' tidak ditemukan dalam kalimat." << endl;
+        cout << "Huruf " << target << " tidak ditemukan dalam kalimat." << endl;
     }
 
     return 0;
