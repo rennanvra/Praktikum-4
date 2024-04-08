@@ -42,6 +42,7 @@ Contoh dari Sequential Search, yaitu:
 Array
 
 Int A[8] = {9,1,5,2,7,6,11,3}
+
 ![Screenshot 2024-04-08 120421](https://github.com/rennanvra/Praktikum-4/assets/162097323/65123d66-72f2-49f9-82bd-902b383453a3)
 
 Gambar 1. Ilustrasi Sequential Search
